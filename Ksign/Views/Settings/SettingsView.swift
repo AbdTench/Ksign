@@ -28,15 +28,16 @@ struct SettingsView: View {
     }
     
     
-	private let _donationsUrl = "https://github.com/sponsors/nyasami"
-	private let _githubUrl = "https://github.com/nyasami/ksign"
-    private let _discordUrl = "https://discord.gg/sfbZfQzVdQ"
+	private let _githubUrl = "https://github.com/AbdTench/Ksign"
+    // Donations removed from Settings; donations view is kept in the repo if needed later.
+	// private let _donationsUrl = "https://github.com/sponsors/nyasami"
+	// private let _discordUrl = "https://discord.gg/sfbZfQzVdQ"
 	// MARK: Body
     var body: some View {
 		NBNavigationView(.localized("Settings")) {
 			Form {
 //				#if !NIGHTLY && !DEBUG
-				SettingsDonationCellView(site: _donationsUrl)
+//					SettingsDonationCellView(site: _donationsUrl)
 //				#endif
 				
 				_feedback()
@@ -49,23 +50,23 @@ struct SettingsView: View {
                         Label(.localized("Appearance"), systemImage: "paintbrush")
                     }
 				}
-                
-                NBSection(.localized("Certificates")) {
-                    
-                    if let cert = selectedCertificate {
-                        CertificatesCellView(cert: cert)
-                    } else {
-                        Text(.localized("No Certificate"))
-                            .font(.footnote)
-                            .foregroundColor(.disabled())
-                    }
-                    NavigationLink(destination: CertificatesView()) {
-                        Label(.localized("Certificates"), systemImage: "signature")
-                    }
-                 
-                } footer: {
-                    Text(.localized("Add and manage certificates used for signing applications."))
-                }
+				
+				NBSection(.localized("Certificates")) {
+				    
+				    if let cert = selectedCertificate {
+				        CertificatesCellView(cert: cert)
+				    } else {
+				        Text(.localized("No Certificate"))
+				            .font(.footnote)
+				            .foregroundColor(.disabled())
+				    }
+				    NavigationLink(destination: CertificatesView()) {
+				        Label(.localized("Certificates"), systemImage: "signature")
+				    }
+				 
+				} footer: {
+				    Text(.localized("Add and manage certificates used for signing applications."))
+				}
 				
 				NBSection(.localized("Features")) {
                     NavigationLink(destination: LogsView(manager: LogsManager.shared)) {
@@ -86,8 +87,8 @@ struct SettingsView: View {
 				}
 				
 				_directories()
-                
-                Section {
+				
+				Section {
                     NavigationLink(destination: ResetView()) {
                         Label(.localized("Reset"), systemImage: "trash")
                     }
@@ -109,14 +110,12 @@ extension SettingsView {
                 Label(.localized("About"), systemImage: "info.circle")
             }
 			Button(.localized("Telegram Channel"), systemImage: "paperplane.circle") {
-				UIApplication.open("https://t.me/KhoinDNS")
+				UIApplication.open("https://t.me/ipafilesfor")
 			}
 			Button(.localized("GitHub Repository"), systemImage: "safari") {
 				UIApplication.open(_githubUrl)
 			}
-            Button(.localized("Discord Server"), systemImage: "safari") {
-                UIApplication.open(_discordUrl)
-            }
+			// Discord link intentionally removed while a replacement is not provided.
 		}
 	}
 	
