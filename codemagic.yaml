@@ -9,6 +9,6 @@ workflows:
     scripts:
       - name: Build unsigned IPA
         script: |
-          xcodebuild -project Ksign.xcodeproj -scheme Ksign -configuration Release -sdk iphoneos -derivedDataPath build CODE_SIGNING_ALLOWED=NO clean build
+          xcodebuild -project Ksign.xcodeproj -scheme Ksign -configuration Release -sdk iphoneos -derivedDataPath build CODE_SIGNING_ALLOWED=NO -skipPackagePluginValidation clean build
     artifacts:
       - build/Build/Products/Release-iphoneos/*.app
