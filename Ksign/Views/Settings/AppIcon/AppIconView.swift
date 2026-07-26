@@ -29,6 +29,8 @@ struct AppIconView: View {
             iconName: "AppIcon",
             alternateIconName: nil
         ),
+        AppIconOption(id: "p_gradient", title: "Gradient", subtitle: "", iconName: "p_gradient-preview", alternateIconName: "p_gradient"),
+        AppIconOption(id: "p_mono", title: "Mono", subtitle: "", iconName: "p_mono-preview", alternateIconName: "p_mono"),
     ]
     
     // MARK: Body
