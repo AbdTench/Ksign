@@ -55,29 +55,20 @@
 	<dict>
 		<key>CFBundleAlternateIcons</key>
 		<dict>
-			<key>kana_ded</key>
+			<key>p_gradient</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>kana_ded</string>
+					<string>p_gradient</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>kana_love</key>
+			<key>p_mono</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>kana_love</string>
-				</array>
-				<key>UIPrerenderedIcon</key>
-				<false/>
-			</dict>
-			<key>kana_peek</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>kana_peek</string>
+					<string>p_mono</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
