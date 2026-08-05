@@ -120,6 +120,23 @@ extension SettingsView {
 	}
 	
 	@ViewBuilder
+	private func _followMe() -> some View {
+		Section {
+			Button(.localized("Telegram"), systemImage: "paperplane.circle") {
+				UIApplication.open("https://t.me/ipafilesfor")
+			}
+			Button(.localized("Instagram"), systemImage: "camera.circle") {
+				UIApplication.open("https://instagram.com/087.e")
+			}
+			Button(.localized("TikTok"), systemImage: "music.note") {
+				UIApplication.open("https://tiktok.com/@087.n")
+			}
+		} header: {
+			Text(.localized("Follow me"))
+		}
+	}
+	
+	@ViewBuilder
 	private func _directories() -> some View {
 		NBSection(.localized("Misc")) {
 			Button(.localized("Open Documents"), systemImage: "folder") {
