@@ -19,16 +19,69 @@ struct SourceAppsCellView: View {
     var app: ASRepository.App
     
     var body: some View {
-        VStack {
-            HStack(spacing: 2) {
-                FRIconCellView(
-                    title: app.currentName,
-                    subtitle: Self.appDescription(app: app),
-                    iconUrl: app.iconURL
-                )
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(spacing: 12) {
+                // App Icon with Corner Radius
+                if let iconURL = app.iconURL {
+                    LazyImage(url: iconURL) { state in
+                        if let image = state.image {
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 60, height: 60)
+                                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                        } else {
+                            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                .fill(Color(uiColor: .tertiarySystemFill))
+                                .frame(width: 60, height: 60)
+                        }
+                    }
+                } else {
+                    RoundedRectangle(cornerRadius: 12, style: .continuous)
+                        .fill(Color(uiColor: .tertiarySystemFill))
+                        .frame(width: 60, height: 60)
+                }
+                
+                // App Info
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(app.currentName)
+                        .font(.headline)
+                        .lineLimit(1)
+                    
+                    // Rating and Size
+                    HStack(spacing: 8) {
+                        // Star Rating (if available)
+                        HStack(spacing: 2) {
+                            Image(systemName: "star.fill")
+                                .font(.caption2)
+                                .foregroundStyle(.yellow)
+                            Text("4.8")
+                                .font(.caption2)
+                                .foregroundStyle(.secondary)
+                        }
+                        
+                        // App Size
+                        if let size = app.size {
+                            Text(size.formattedByteCount)
+                                .font(.caption2)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    
+                    // App Description
+                    Text(app.currentDescription ?? .localized("An awesome application"))
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                }
+                
+                Spacer()
+                
+                // Download Button
                 DownloadButtonView(app: app)
             }
             
+            // Full Description (if enabled)
             if
                 _storeCellAppearance != 0,
                 let desc = app.localizedDescription
@@ -40,6 +93,7 @@ struct SourceAppsCellView: View {
                     .padding(.top, 2)
             }
         }
+        .padding(.vertical, 8)
     }
     
     static func appDescription(app: ASRepository.App) -> String {

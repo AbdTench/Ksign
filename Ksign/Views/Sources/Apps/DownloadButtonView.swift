@@ -25,12 +25,12 @@ struct DownloadButtonView: View {
 						.trim(from: 0, to: downloadProgress)
 						.stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2.3, lineCap: .round))
 						.rotationEffect(.degrees(-90))
-						.frame(width: 31, height: 31)
+						.frame(width: 40, height: 40)
 						.animation(.smooth, value: downloadProgress)
 
 					Image(systemName: downloadProgress >= 0.75 ? "archivebox" : "square.fill")
 						.foregroundStyle(.tint)
-						.font(.footnote).bold()
+						.font(.system(size: 16)).bold()
 				}
 				.onTapGesture {
 					if downloadProgress <= 0.75 {
@@ -45,15 +45,17 @@ struct DownloadButtonView: View {
 					}
 				} label: {
 					Text(.localized("Get"))
-						.lineLimit(0)
+						.lineLimit(1)
 						.font(.headline.bold())
 						.foregroundStyle(Color.accentColor)
-						.padding(.horizontal, 24)
-						.padding(.vertical, 6)
-						.background(Color(uiColor: .quaternarySystemFill))
-						.clipShape(Capsule())
+						.frame(width: 50)
+						.padding(.vertical, 8)
+						.background(
+							RoundedRectangle(cornerRadius: 10, style: .continuous)
+								.fill(Color(uiColor: .secondarySystemBackground))
+						)
 				}
-				.buttonStyle(.borderless)
+				.buttonStyle(.plain)
 				.compatTransition()
 			}
 		}

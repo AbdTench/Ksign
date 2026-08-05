@@ -38,6 +38,7 @@ struct SourceAppsView: View {
     @State var isLoading = true
     @State var hasLoadedOnce = false
     @State private var _searchText = ""
+    @State private var _selectedFeaturedIndex: Int = 0
     var fromAppStore: Bool = false
     
     private var _navigationTitle: String {
@@ -79,14 +80,23 @@ struct SourceAppsView: View {
                 let _sources,
                 !_sources.isEmpty
             {
-                SourceAppsTableRepresentableView(
-                    sources: _sources,
-                    searchText: $_searchText,
-                    sortOption: $_sortOption,
-                    sortAscending: $_sortAscending,
-                    onSelect: {self._selectedRoute = $0}
-                )
-                .ignoresSafeArea()
+                VStack(spacing: 0) {
+                    // Featured Carousel for App Store
+                    if fromAppStore && !_sources.isEmpty {
+                        _featuredBanner(_sources)
+                            .frame(height: 200)
+                            .padding(.vertical, 16)
+                    }
+                    
+                    SourceAppsTableRepresentableView(
+                        sources: _sources,
+                        searchText: $_searchText,
+                        sortOption: $_sortOption,
+                        sortAscending: $_sortAscending,
+                        onSelect: {self._selectedRoute = $0}
+                    )
+                    .ignoresSafeArea()
+                }
             } else {
                 if #available(iOS 17, *) {
                     ContentUnavailableView {
@@ -100,6 +110,7 @@ struct SourceAppsView: View {
             }
         }
         .navigationTitle(_navigationTitle)
+        .navigationBarTitleDisplayMode(fromAppStore ? .large : .automatic)
         .searchable(text: $_searchText, placement: .platform())
         .toolbarTitleMenu {
             if !fromAppStore,
@@ -135,6 +146,14 @@ struct SourceAppsView: View {
                         SourcesView()
                     } label: {
                         Text(.localized("Sources"))
+                    }
+                }
+            } else {
+                // Profile/Search icon for App Store
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {}) {
+                        Image(systemName: "person.crop.circle")
+                            .font(.title3)
                     }
                 }
             }
@@ -176,6 +195,61 @@ struct SourceAppsView: View {
             SourceAppsDetailView(source: route.source, app: route.app)
         }
         
+    }
+    
+    @ViewBuilder
+    private func _featuredBanner(_ sources: [ASRepository]) -> some View {
+        let allApps = sources.flatMap { $0.apps }.prefix(5)
+        
+        if !allApps.isEmpty {
+            TabView(selection: $_selectedFeaturedIndex) {
+                ForEach(Array(allApps.enumerated()), id: \.offset) { index, app in
+                    if let iconURL = app.iconURL {
+                        LazyImage(url: iconURL) { state in
+                            if let image = state.image {
+                                ZStack {
+                                    image
+                                        .resizable()
+                                        .scaledToFill()
+                                    
+                                    VStack(alignment: .leading) {
+                                        HStack {
+                                            VStack(alignment: .leading, spacing: 4) {
+                                                Text(app.currentName)
+                                                    .font(.headline.bold())
+                                                    .foregroundStyle(.white)
+                                                
+                                                Text(app.currentDescription ?? "")
+                                                    .font(.caption)
+                                                    .foregroundStyle(.white.opacity(0.8))
+                                                    .lineLimit(2)
+                                            }
+                                            Spacer()
+                                        }
+                                        Spacer()
+                                    }
+                                    .padding(16)
+                                    .background(
+                                        LinearGradient(
+                                            gradient: Gradient(colors: [
+                                                Color.black.opacity(0),
+                                                Color.black.opacity(0.6)
+                                            ]),
+                                            startPoint: .topLeading,
+                                            endPoint: .bottomTrailing
+                                        )
+                                    )
+                                }
+                                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                                .tag(index)
+                            }
+                        }
+                    }
+                }
+            }
+            .tabViewStyle(.page(indexDisplayMode: .automatic))
+            .padding(.horizontal)
+        }
     }
     
     private func _load() {
