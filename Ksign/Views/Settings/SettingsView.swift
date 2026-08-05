@@ -42,6 +42,8 @@ struct SettingsView: View {
 				
 				_feedback()
 				
+				_followMe()
+				
 				Section {
                     NavigationLink(destination: AppIconView()) {
                         Label(.localized("App Icon"), systemImage: "app.badge")
