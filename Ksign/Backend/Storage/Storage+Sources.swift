@@ -97,7 +97,9 @@ extension Storage {
             "https://raw.githubusercontent.com/Nyasami/Ksign/refs/heads/main/repo.json",
             "https://community-apps.sidestore.io/sidecommunity.json",
             "https://github.com/LiveContainer/LiveContainer/releases/download/1.0/apps.json",
-            "https://alt.crystall1ne.dev"
+            "https://alt.crystall1ne.dev",
+            "https://repository.apptesters.org",
+            "https://raw.githubusercontent.com/AbdTench/SwiftSource/refs/heads/main/My%20Source"
 		]
 		
 		for urlString in builtInSourceURLs {
