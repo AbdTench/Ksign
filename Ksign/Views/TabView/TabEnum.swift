@@ -23,7 +23,7 @@ enum TabEnum: String, CaseIterable, Hashable {
 		case .library: 		return .localized("Library")
 		case .settings: 	return .localized("Settings")
 		case .certificates:	return .localized("Certificates")
-		case .appstore: 	return .localized("App Store")
+		case .appstore: 	return .localized("تطبيقات")
         case .downloader:   return .localized("Downloads")
 		}
 	}
@@ -55,9 +55,9 @@ enum TabEnum: String, CaseIterable, Hashable {
 	
 	static var defaultTabs: [TabEnum] {
 		return [
+            .appstore,
             .files,
             .library,
-            .appstore,
             .downloader,
 			.settings,
 		]

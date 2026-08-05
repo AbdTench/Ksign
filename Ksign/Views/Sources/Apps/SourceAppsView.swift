@@ -42,7 +42,7 @@ struct SourceAppsView: View {
     
     private var _navigationTitle: String {
         if fromAppStore {
-            return .localized("App Store")
+            return .localized("تطبيقات")
         } else if object.count == 1 {
             return object[0].name ?? .localized("Unknown")
         } else {
@@ -63,6 +63,18 @@ struct SourceAppsView: View {
     // MARK: Body
     var body: some View {
         ZStack {
+            if fromAppStore {
+                LinearGradient(
+                    gradient: Gradient(colors: [
+                        Color(red: 0.1, green: 0.1, blue: 0.12),
+                        Color(red: 0.15, green: 0.15, blue: 0.18)
+                    ]),
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+                .ignoresSafeArea()
+            }
+            
             if
                 let _sources,
                 !_sources.isEmpty
@@ -90,7 +102,7 @@ struct SourceAppsView: View {
         .navigationTitle(_navigationTitle)
         .searchable(text: $_searchText, placement: .platform())
         .toolbarTitleMenu {
-            if
+            if !fromAppStore,
                 let _sources,
                 _sources.count == 1
             {
@@ -105,9 +117,9 @@ struct SourceAppsView: View {
                         UIApplication.open(url)
                     }
                 }
+                
+                Divider()
             }
-            
-            Divider()
             
             Button(.localized("Copy"), systemImage: "doc.on.doc") {
                 UIPasteboard.general.string = object.map {
@@ -117,7 +129,7 @@ struct SourceAppsView: View {
             }
         }
         .toolbar {
-            if fromAppStore {
+            if !fromAppStore {
                 ToolbarItem(placement: .topBarLeading) {
                     NavigationLink {
                         SourcesView()
@@ -137,12 +149,14 @@ struct SourceAppsView: View {
                 }
             }
             
-            NBToolbarMenu(
-                systemImage: "line.3.horizontal.decrease",
-                style: .icon,
-                placement: .topBarTrailing
-            ) {
-                _sortActions()
+            if !fromAppStore {
+                NBToolbarMenu(
+                    systemImage: "line.3.horizontal.decrease",
+                    style: .icon,
+                    placement: .topBarTrailing
+                ) {
+                    _sortActions()
+                }
             }
         }
         .onAppear {
