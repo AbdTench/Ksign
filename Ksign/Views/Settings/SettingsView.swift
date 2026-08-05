@@ -42,8 +42,6 @@ struct SettingsView: View {
 				
 				_feedback()
 				
-				_followMe()
-				
 				Section {
                     NavigationLink(destination: AppIconView()) {
                         Label(.localized("App Icon"), systemImage: "app.badge")
@@ -114,27 +112,16 @@ extension SettingsView {
 			Button(.localized("Telegram Channel"), systemImage: "paperplane.circle") {
 				UIApplication.open("https://t.me/ipafilesfor")
 			}
-			Button(.localized("GitHub Repository"), systemImage: "safari") {
-				UIApplication.open(_githubUrl)
-			}
-			// Discord link intentionally removed while a replacement is not provided.
-		}
-	}
-	
-	@ViewBuilder
-	private func _followMe() -> some View {
-		Section {
-			Button(.localized("Telegram"), systemImage: "paperplane.circle") {
-				UIApplication.open("https://t.me/ipafilesfor")
-			}
 			Button(.localized("Instagram"), systemImage: "camera.circle") {
 				UIApplication.open("https://instagram.com/087.e")
 			}
 			Button(.localized("TikTok"), systemImage: "music.note") {
 				UIApplication.open("https://tiktok.com/@087.n")
 			}
-		} header: {
-			Text(.localized("Follow me"))
+			Button(.localized("GitHub Repository"), systemImage: "safari") {
+				UIApplication.open(_githubUrl)
+			}
+			// Discord link intentionally removed while a replacement is not provided.
 		}
 	}
 	

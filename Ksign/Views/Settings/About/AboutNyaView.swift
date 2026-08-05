@@ -23,7 +23,7 @@ struct AboutNyaView: View {
                     Image(uiImage: (UIImage(named: Bundle.main.iconFileName ?? ""))! )
                         .appIconStyle(size: 72)
                     
-                    Text(Bundle.main.exec)
+                    Text("Swift Store")
                         .font(.largeTitle)
                         .bold()
                         .foregroundStyle(.accent)
@@ -49,12 +49,12 @@ struct AboutNyaView: View {
             .listRowBackground(EmptyView())
 			
 			NBSection(.localized("Credits")) {
-				_credit(name: "AbdTench", desc: "Developer", github: "AbdTench")
+				_credit(name: "عبدالباسط خضير", desc: "Developer", github: "AbdTench")
 			}
 			
 			NBSection("Special thanks!") {
 				Group {
-					Text(.localized("Made possible thanks to the original Feather devs! ❤️"))
+					Text(.localized("هذا التطبيق من صنع عبدالباسط خضير 🔥 — بُني على جهود مطوري Feather الأصليين، تحية لهم على شغلهم. تابعني لمزيد من الأدوات والمشاريع."))
 						.foregroundStyle(.secondary)
 						.padding(.vertical, 2)
 				}
@@ -86,7 +86,7 @@ struct AboutNyaView: View {
 	private func _showPatchNotes() {
 		UIAlertController.showAlertWithOk(
 			title: .localized("From AbdTench, Version \(Bundle.main.version)"),
-			message: .localized("This version introduces:\n\n- Optimization for iOS 26\n- Bulk installation support for multiple apps\n- idevice installation method\n- Custom injection path & support for frameworks"),
+			message: .localized("This version introduces:\n\n- Optimization for iOS 26\n- Bulk installation support for multiple apps\n- idevice installation method\n- Custom injection path & support for injec[...]
 			isCancel: true,
 			thankYou: true
 		)
