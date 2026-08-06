@@ -54,7 +54,7 @@ struct AboutNyaView: View {
 			
 			NBSection("Special thanks!") {
 				Group {
-					Text(.localized("هذا التطبيق من صنع عبدالباسط خضير 🔥 — بُني على جهود مطوري Feather الأصليين، تحية لهم على شغلهم. تابعني لمزيد من الأدوات والمشاريع."))
+					Text(.localized("هذا التطبيق من صنع عبدالباسط خضير 🔥 — بُني على جهود مطوري Feather الأصليين، تحية لهم على شغلهم. تا�[...]")
 						.foregroundStyle(.secondary)
 						.padding(.vertical, 2)
 				}
@@ -86,7 +86,7 @@ struct AboutNyaView: View {
 	private func _showPatchNotes() {
 		UIAlertController.showAlertWithOk(
 			title: .localized("From AbdTench, Version \(Bundle.main.version)"),
-			message: .localized("This version introduces:\n\n- Optimization for iOS 26\n- Bulk installation support for multiple apps\n- idevice installation method\n- Custom injection path & support for injec[...]
+			message: .localized("This version introduces:\n\n- Optimization for iOS 26\n- Bulk installation support for multiple apps\n- idevice installation method\n- Custom injection path & support for injecting tweaks into App Extensions\n- Support for .bundle files as tweaks (copied directly into the app bundle)\n- rsd support\n- Fix empty display name handling in Info.plist\n- Fix URL scheme issues for Ksign\n- Fix codesigning errors on specific apps with unusual bundle structures\n- Localization updates for German, Russian, Arabic, and Vietnamese"),
 			isCancel: true,
 			thankYou: true
 		)
