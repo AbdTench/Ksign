@@ -54,7 +54,7 @@ struct AboutNyaView: View {
 			
 			NBSection("Special thanks!") {
 				Group {
-					Text(.localized("هذا التطبيق من صنع عبدالباسط خضير 🔥 — بُني على جهود مطوري Feather الأصليين، تحية لهم على شغلهم. تابعني لمزيد من الأدوات والمشاريع."))
+					Text(.localized "هذا التطبيق من صنع عبدالباسط خضير 🔥 — بُني على جهود مطوري Feather الأصليين، تحية لهم على شغلهم. تابعني لمزيد من الأدوات والمشاريع."))
 						.foregroundStyle(.secondary)
 						.padding(.vertical, 2)
 				}
