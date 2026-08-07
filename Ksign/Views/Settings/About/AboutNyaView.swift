@@ -86,7 +86,7 @@ struct AboutNyaView: View {
 	private func _showPatchNotes() {
 		UIAlertController.showAlertWithOk(
 			title: .localized("From AbdTench, Version \(Bundle.main.version)"),
-			message: .localized("This version introduces:\n\n- Optimization for iOS 26\n- Bulk installation support for multiple apps\n- idevice installation method\n- Custom injection path & support for injec[...]
+			message: .localized("This version introduces:\n\n- Optimization for iOS 26\n- Bulk installation support for multiple apps\n- idevice installation method\n- Custom injection path support"),
 			isCancel: true,
 			thankYou: true
 		)
