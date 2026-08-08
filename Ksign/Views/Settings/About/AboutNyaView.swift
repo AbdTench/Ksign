@@ -49,12 +49,12 @@ struct AboutNyaView: View {
             .listRowBackground(EmptyView())
 			
 			NBSection(.localized("Credits")) {
-				_credit(name: "عبدالباسط خضير", desc: "Developer", github: "AbdTench")
+				_credit(name: "Abdulbasit Khudair", desc: "Developer", github: "AbdTench")
 			}
 			
 			NBSection("Special thanks!") {
 				Group {
-					Text(.localized("هذا التطبيق من صنع عبدالباسط خضير 🔥 — بُني على جهود مطوري Feather الأصليين، تحية لهم على شغلهم. تابعني لمزيد من الأدوات والمشاريع."))
+					Text("Made by Abdulbasit Khudair. Built on the great work of the original Feather developers, credit to them. Follow me for more tools and projects.")
 						.foregroundStyle(.secondary)
 						.padding(.vertical, 2)
 				}
